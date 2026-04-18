@@ -32,7 +32,7 @@ def register(user: schemas.UserCreate, db: Session = Depends(get_db)):
         raise HTTPException(status_code=400, detail="Email already registered")
     
     hashed_pwd = AuthService.get_password_hash(user.password)
-    return UserRepository.create_user(db=db, email=user.email, hashed_password=hashed_pwd)
+    return UserRepository.create_user(db=db, name=user.name, email=user.email, hashed_password=hashed_pwd)
 
 @app.post("/login", response_model=schemas.Token)
 def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):

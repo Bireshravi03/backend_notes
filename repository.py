@@ -8,8 +8,8 @@ class UserRepository:
         return db.query(User).filter(User.email == email).first()
 
     @staticmethod
-    def create_user(db: Session, email: str, hashed_password: str):
-        db_user = User(email=email, hashed_password=hashed_password)
+    def create_user(db: Session, name: str, email: str, hashed_password: str):
+        db_user = User(name=name, email=email, hashed_password=hashed_password)
         db.add(db_user)
         db.commit()
         db.refresh(db_user)
